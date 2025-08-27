@@ -1,61 +1,16 @@
 <?php
 
-    $produtosCafe = [
-        [
-            'nome' => "Café Cremoso",
-            'descricao' => "Café cremoso irresistivelmente suave e que envolve seu paladar",
-            'preco' => "5.00",
-            'imagem' => "img/cafe-cremoso.jpg"
-        ],
-        [
-            'nome' => "Café com leite",
-            'descricao' => "A harmonia do café e do leite, uma eperiência reconfortante",
-            'preco' => "2.00",
-            'imagem' => "img/cafe-com-leite.jpg"
-        ],
-        [
-            'nome' => "Cappuccino",
-            'descricao' => "Café suave, leite cremoso e uma pitada de sabor adocicado",
-            'preco' => "7.00",
-            'imagem' => "img/cappuccino.jpg"
-        ],
-        [
-            'nome' => "Café Gelado",
-            'descricao' => "Café gelado refrescante, adoçado e com notas sutis de baunilha ou caramelo.",
-            'preco' => "3.00",
-            'imagem' => "img/cafe-gelado.jpg"
-        ]
-    ];
+require "src/conexao-bd.php";
+require "src/Model/Produto.php";
+
+    $selectQueryCafe = "SELECT * from produtos WHERE tipo = 'Café' ORDER BY preco asc";
+    $statement = $pdo->query($selectQueryCafe);
+    $produtosCafe = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    $selectQueryAlmoco = "SELECT * from produtos WHERE tipo = 'Almoço' ORDER BY preco asc";
+    $statement = $pdo->query($selectQueryAlmoco);
+    $produtosAlmoco = $statement->fetchAll(PDO::FETCH_ASSOC);
     
-    $produtosAlmoco = [
-        [
-            'nome' => "Bife",
-            'Descricao' => "Bife, arroz com feijão e uma deliciosa batata frita",
-            'preco' => "27.90",
-            'imagem' => "img/bife.jpg"
-        ],
-
-        [
-            'nome' => "Filé de peixe",
-            'Descricao' => "Filé de peixe salmão assado, arroz, feijão verde e tomate.",
-            'preco' => "24.99",
-            'imagem' =>"img/prato-peixe.jpg"
-        ],
-
-        [
-            'nome' => "Frango",
-            'Descricao' => "Saboroso frango à milanesa com batatas fritas, salada de repolho e molho picante",
-            'preco' => "23.00",
-            'imagem' => "img/prato-frango.jpg"
-        ],
-
-        [
-            'nome' => "Fettuccine",
-            'Descricao' => "Prato italiano autêntico da massa do fettuccine com peito de frango grelhado",
-            'preco' => "22.50",
-            'imagem' => "img/fettuccine.jpg"
-        ]
-    ]
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -90,7 +45,7 @@
                 <?php foreach($produtosCafe as $cafe):?>
                 <div class="container-produto">
                     <div class="container-foto">
-                        <img src="<?= $cafe['imagem'] ?>">
+                        <img src="<?= "img/" . $cafe['imagem'] ?>">
                     </div>
                     <p><?= $cafe['nome'] ?></p>
                     <p><?= $cafe['descricao'] ?></p>
@@ -108,7 +63,7 @@
                 <?php foreach($produtosAlmoco as $almoco):?>
                 <div class="container-produto">
                     <div class="container-foto">
-                        <img src="<?= $almoco['imagem'] ?>">
+                        <img src="<?= "img/" . $almoco['imagem'] ?>">
                     </div>
                     <p><?= $almoco['nome']?></p>
                     <p><?= $almoco['descricao']?></p>
