@@ -87,7 +87,6 @@ projeto-inicial/
 🚀 Melhorias Futuras
 
 - Adicionar autenticação para acesso ao painel administrativo
-- Implementar upload de imagens em vez de campo de texto
 - Melhorar o frontend com design responsivo
 - Criar testes automatizados
 
